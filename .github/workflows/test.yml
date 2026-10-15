@@ -18,25 +18,25 @@ jobs:
             -p 8080:80 \
             meu-site
             
-     - name: Diagnóstico
-       run: |
-         echo "=== CONTAINER ==="
-         docker ps -a
+      - name: Diagnóstico
+        run: |
+          echo "=== CONTAINER ==="
+          docker ps -a
 
-         echo "=== LOGS ==="
-         docker logs meu-site || true
+          echo "=== LOGS ==="
+          docker logs meu-site || true
 
-         echo "=== PORTAS ==="
-         docker port meu-site
+          echo "=== PORTAS ==="
+          docker port meu-site
 
-         echo "=== NGINX CONFIG ==="
-         docker exec meu-site nginx -t
+          echo "=== NGINX CONFIG ==="
+          docker exec meu-site nginx -t
 
-         echo "=== TESTE INTERNO ==="
-         docker exec meu-site wget -q0- http://127.0.0.1
-    - name: Testar Nginx
-      run: |
-        curl -4 -v http://127.0.0.1:8080
-    - name: Parar container
-      if: always()
-      run: docker stop meu-site || true
+          echo "=== TESTE INTERNO ==="
+          docker exec meu-site wget -q0- http://127.0.0.1
+      - name: Testar Nginx
+        run: |
+          curl -4 -v http://127.0.0.1:8080
+      - name: Parar container
+        if: always()
+        run: docker stop meu-site || true
