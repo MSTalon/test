@@ -1,8 +1,10 @@
 name: Testar aplicação
+
 on:
   push:
     branches:
       - main
+
 jobs:
   teste:
     runs-on: ubuntu-latest
@@ -10,6 +12,7 @@ jobs:
     steps:
       - name: Baixar o código
         uses: actions/checkout@v4
+
 
       - name: Verificar Docker
         run: docker --version
